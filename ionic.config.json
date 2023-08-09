@@ -1,0 +1,7 @@
+{
+  "name": "ia7survey",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
