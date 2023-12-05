@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <p id="note">Encuesta Cliente : <strong>{{usuario}}</strong></p>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card color="success">
+    <ion-card-header>
+      <ion-card-title>Realizadas</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let encuesta of encuestas; let i = index" (click)="abrirIdEncuesta(encuesta)">
+          <ion-grid class="encuesta-details">
+            <p><strong>Id:</strong> {{ encuesta.id }}</p>
+            <p><strong>Cliente:</strong> {{ encuesta.descripcionCliente }}</p>
+            <p><strong>Descripcion:</strong> {{ encuesta.titulo }}</p>
+          </ion-grid>
+          <ion-icon name="arrow-forward" slot="end"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <!-- Contenido del pie de página -->
+  <ion-toolbar class="ion-text-center">
+    <ion-title></ion-title>
+    <!-- Aquí agregamos el logo -->
+    <img src="../../assets/ia7criculo.png" alt="Logo IA7" style="max-width: 50px; height: auto;">
+  </ion-toolbar>
+</ion-footer>

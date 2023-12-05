@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Bienvenido {{username}}</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div class="btn-bg bg-4">
+    <div class="btn btn-4">
+      <h2>Encuesta</h2>
+      <ion-button (click)="generarEncuesta()" color="light" fill="outline">Generar Encuesta</ion-button>
+    </div>
+  </div>
+
+  <div class="btn-bg bg-2">
+    <div class="btn btn-2">
+      <h2>Encuestas</h2>
+      <ion-button (click)="asignarEncuesta()" color="light" fill="outline">Asignar Encuesta</ion-button>
+    </div>
+  </div>
+
+  <div class="btn-bg bg-3">
+    <div class="btn btn-3">
+        <h2>Usuario</h2>
+        <ion-button (click)="adminUser()" color="light" fill="outline">Crear Usuario</ion-button>
+        <!-- <br>
+        <ion-button (click)="adminUser()" color="light" fill="outline">Actua Usuario</ion-button> -->
+    </div>
+</div>
+
+<div class="btn-bg bg-1">
+  <div class="btn btn-1">
+      <h2>Usuario</h2>
+      <ion-button (click)="adminCliente()" color="light" fill="outline">Crear Cliente</ion-button>
+      <!-- <br>
+      <ion-button (click)="adminUser()" color="light" fill="outline">Actua Usuario</ion-button> -->
+  </div>
+</div>
+
+</ion-content>
+
+<ion-footer>
+  <!-- Contenido del pie de página -->
+  <ion-toolbar class="ion-text-center">
+    <ion-title></ion-title>
+    <!-- Aquí agregamos el logo -->
+    <img src="../../assets/ia7criculo.png" alt="Logo IA7" style="max-width: 50px; height: auto;">
+  </ion-toolbar>
+</ion-footer>
+

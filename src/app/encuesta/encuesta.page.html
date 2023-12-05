@@ -1,0 +1,121 @@
+<ion-header [translucent]="true" *ngIf="encuesta">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-buttons>
+    
+    <ion-title class="ion-text-center">{{ encuesta.titulo }}</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" *ngIf="encuesta" >
+  <div *ngIf="modoLectura" class="modo-lectura-indicator">
+    Modo de Lectura
+  </div>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"> </ion-title>
+    
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card class="card card-radio-btn" >
+    <ion-card-header class="section-three">
+      <h1>Información de la Encuesta</h1>   
+    </ion-card-header>
+    <ion-card-content>
+      <br>
+      <p>Fecha Inicio: {{ encuesta.fechainicio }}</p>
+      <p>Fecha Corte: {{ encuesta.fechaCorte }}</p>
+      <p>Instrucciones: {{ encuesta.instrucciones }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let seccion of encuesta.secciones" class="card card-radio-btn">
+    <ion-card-header  class="section-for">
+      <h6>{{ seccion.descripcion }}</h6>
+      
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+
+        <ng-container *ngFor="let pregunta of seccion.preguntas" class="pregunta-item">
+          <ion-item>
+            <ion-label class="pregunta">{{ pregunta.descripcion }}</ion-label>
+           
+            <ng-container *ngIf="pregunta.tipo === 0">
+              <ion-input type="text" [(ngModel)]="pregunta.respuesta" [readonly]="modoLectura"></ion-input>
+            </ng-container>
+            
+            <ng-container *ngIf="pregunta.tipo === 1">
+              <ion-radio-group [(ngModel)]="pregunta.respuesta">
+                <ion-item *ngFor="let opcion of pregunta.opciones">
+                  <ion-label>{{ opcion.descripcion }}</ion-label>
+                  <ion-radio [value]="opcion.descripcion" [disabled]="modoLectura"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ng-container>            
+            
+            <ng-container *ngIf="pregunta.tipo === 2">
+              <ion-item *ngFor="let opcion of pregunta.opciones">
+                <ion-label>{{ opcion.descripcion }}</ion-label>
+                <ion-checkbox
+                  [checked]="isOptionChecked(pregunta, opcion.descripcion)"
+                  (ionChange)="updateCheckboxSelection(pregunta, opcion.descripcion, $event)"
+                  [disabled]="modoLectura">
+                </ion-checkbox>
+              </ion-item>
+            </ng-container>          
+            
+
+            <ng-container *ngIf="pregunta.tipo === 3">
+              <ion-select [(ngModel)]="pregunta.respuesta" [disabled]="modoLectura">
+                <ion-select-option *ngFor="let opcion of pregunta.opciones" [value]="opcion.descripcion">{{ opcion.descripcion }}</ion-select-option>
+              </ion-select>
+            </ng-container>
+
+          </ion-item>
+
+          <ng-container *ngIf="pregunta.urgente === 1">
+            <ion-item class="urgente-item">
+              <ion-label class="pregunta">Es urgente?</ion-label>
+              <ion-checkbox [(ngModel)]="pregunta.respuestaUrgente" [disabled]="modoLectura"></ion-checkbox>
+            </ion-item>
+          </ng-container>
+
+          <ng-container *ngIf="pregunta.observacion === 1">
+            <ion-item>
+              <ion-label class="pregunta">Observacion:</ion-label>
+              <ion-input type="text" placeholder="Ingrese comentario" [(ngModel)]="pregunta.respuestaComentario" [readonly]="modoLectura"></ion-input>
+            </ion-item>
+          </ng-container>
+          <br>
+          <div class="tri-color-line"></div>
+        </ng-container>
+        
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <div>
+    <!-- El botón "Guardar" también debería estar desactivado en modo de lectura -->
+    <ion-button fill="outline" color="success" expand="block" (click)="finalizarEncuesta()" [disabled]="modoLectura">Guardar</ion-button>
+  </div>
+  
+</ion-content>
+
+<ion-footer>
+  <!-- Contenido del pie de página -->
+  <ion-toolbar class="ion-text-center">
+    <ion-title></ion-title>
+    <!-- Aquí agregamos el logo -->
+    <img src="../../assets/ia7criculo.png" alt="Logo IA7" style="max-width: 50px; height: auto;">
+  </ion-toolbar>
+</ion-footer>

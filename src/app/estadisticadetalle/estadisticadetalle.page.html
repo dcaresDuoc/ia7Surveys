@@ -1,0 +1,86 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/asignacion"></ion-back-button>
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-buttons>
+    <h6>estadistica.descripcion</h6>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Verifica si estadisticas es un array y si tiene elementos antes de iterar -->
+  <ng-container *ngIf="estadisticas && estadisticas.length > 0">
+    <ion-card *ngFor="let estadistica of estadisticas[0].estadisticas" class="card card-radio-btn">
+      <ion-card-header class="section-for" >
+        <h6>{{ estadistica.nombreSeccion }}</h6>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label class="pregunta" >Nombre de la Sección</ion-label>
+            <ion-note slot="end">{{ estadistica.nombreSeccion }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label class="pregunta">Si Cumple</ion-label>
+            <ion-note slot="end">{{ estadistica.siCumple }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label class="pregunta">No Cumple</ion-label>
+            <ion-note slot="end">{{ estadistica.noCumple }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label 
+                class="pregunta" 
+                [ngClass]="{'urgente-verde': estadistica.urgente == 0, 'urgente-rojo': estadistica.urgente > 0}">
+                Cant. Urgente
+            </ion-label>
+            <ion-note 
+                slot="end" 
+                [ngClass]="{'urgente-verde': estadistica.urgente == 0, 'urgente-rojo': estadistica.urgente > 0}">
+                {{ estadistica.urgente }}
+            </ion-note>
+        </ion-item>
+        
+        
+          <ion-item>
+            <ion-label class="pregunta">Porcentaje de Cumplimiento</ion-label>
+            <ion-note slot="end">{{ estadistica.porcentajeCumplimiento }}%</ion-note>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+  <!-- Si no hay estadísticas o el array está vacío, muestra un mensaje o realiza alguna acción apropiada -->
+  <ng-container *ngIf="!estadisticas || estadisticas.length === 0">
+    <p>No se encontraron estadísticas.</p>
+  </ng-container>
+
+  <ion-card class="card card-radio-btn">
+    <ion-card-header class="section-for" >
+      <h6>Grafico</h6>
+
+    </ion-card-header>
+  
+    <ion-card-content>
+      <!-- Elimina el id del canvas -->
+    <canvas #miGrafico></canvas>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer>
+  <!-- Contenido del pie de página -->
+  <ion-toolbar class="ion-text-center">
+    <ion-title></ion-title>
+    <!-- Aquí agregamos el logo -->
+    <img src="../../assets/ia7criculo.png" alt="Logo IA7" style="max-width: 50px; height: auto;">
+  </ion-toolbar>
+</ion-footer>

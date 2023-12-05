@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Usuario : {{username}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="card card-radio-btn" >
+    <ion-card-header class="section-three">
+      <h1>Asignar Encuesta </h1>   
+    </ion-card-header>
+    <ion-card-content>
+      <br>
+      <ion-item>
+        <ion-label>Cliente</ion-label>
+        <ion-select placeholder="Seleccione Cliente" (ionChange)="onClienteSelected($event)">
+          <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.id">{{cliente.descripcion}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Usuario</ion-label>
+        <ion-select [(ngModel)]="selectedUserId" >
+          <ion-select-option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Encuesta</ion-label>
+        <ion-select placeholder="Seleccione Encuesta" [(ngModel)]="selectedEncuestaId">
+          <ion-select-option *ngFor="let encuesta of encuestas" [value]="encuesta.id">{{encuesta.titulo}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Fecha Termino</ion-label>
+        <ion-input type="date" placeholder="Ingrese fecha límite" [(ngModel)]="fechaLimite" name="fechaLimite"></ion-input>
+      </ion-item>
+    
+      <ion-button expand="full" (click)="onAsignarEncuesta()">Asignar Encuesta</ion-button>
+      
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <!-- Contenido del pie de página -->
+  <ion-toolbar class="ion-text-center">
+    <ion-title></ion-title>
+    <!-- Aquí agregamos el logo -->
+    <img src="../../assets/ia7criculo.png" alt="Logo IA7" style="max-width: 50px; height: auto;">
+  </ion-toolbar>
+</ion-footer>

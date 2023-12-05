@@ -1,0 +1,105 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Generar Encuesta</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form>
+    <!-- ... Campos para la información de la encuesta ... -->
+
+    <ion-card class="card card-radio-btn">
+      <ion-card-header class="section-three">
+        <h1>Información Base</h1>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-input placeholder="Ingrese título" [(ngModel)]="encuesta.titulo" name="tituloEncuesta"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input placeholder="Ingrese instrucción" [(ngModel)]="encuesta.instrucciones" name="instruccionEncuesta"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="card card-radio-btn">
+      <ion-card-header class="section-three">
+        <h1>Crear Sección</h1>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-input [(ngModel)]="nuevaSeccion.titulo" name="tituloSeccion" placeholder="Ingrese sección"></ion-input>
+        </ion-item>
+        <ion-button (click)="agregarSeccion()" expand="full">Agregar Sección</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngFor="let seccion of encuesta.secciones; let seccionIndex = index" class="card card-radio-btn">
+      <ion-card-header class="section-three">
+        <h1>{{ seccion.titulo }}</h1>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-card *ngFor="let pregunta of seccion.preguntas; let preguntaIndex = index" class="pregunta-card">
+          <ion-card-content>
+            <p>{{ pregunta.pregunta }}</p>
+            <p>Tipo de Pregunta: {{ pregunta.tipoPregunta }}</p>
+            <ion-button (click)="eliminarPregunta(seccionIndex, preguntaIndex)" expand="full">Eliminar Pregunta</ion-button>
+
+            <ion-item *ngIf="pregunta.mostrarOpcionesRespuesta && ['1', '2', '3'].includes(pregunta.tipoPregunta)">
+              <ion-input [(ngModel)]="pregunta.opcionRespuesta" name="opcionRespuesta" placeholder="Ingrese Opción de Respuesta"></ion-input>
+              <ion-button (click)="agregarOpcionRespuesta(seccionIndex, preguntaIndex)" expand="full">Agregar Opción</ion-button>
+            </ion-item>
+
+            <ion-item *ngIf="pregunta.mostrarOpcionesRespuesta && ['1', '2', '3'].includes(pregunta.tipoPregunta) && pregunta.opcionesRespuesta.length > 0">
+              <p>Opciones de Respuesta:</p>
+              <ion-list>
+                <ion-item *ngFor="let opcion of pregunta.opcionesRespuesta; let opcionIndex = index">
+                  {{ opcion }}
+                  <ion-button (click)="eliminarOpcionRespuesta(seccionIndex, preguntaIndex, opcionIndex)" expand="full">Eliminar</ion-button>
+                </ion-item>
+              </ion-list>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="card card-radio-btn">
+          <ion-card-header class="section-three">
+            <h1>Agregar Pregunta</h1>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-select [(ngModel)]="tipoPreguntaSeleccionado" name="tipoPregunta"  placeholder="Tipo pregunta">
+                <ion-select-option *ngFor="let tipo of tiposDePregunta" [value]="tipo.value">{{ tipo.description }}</ion-select-option>
+            </ion-select>            
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="nuevaPregunta.pregunta" name="pregunta" placeholder="Ingrese Pregunta"></ion-input>
+            </ion-item>
+            <ion-button (click)="agregarPreguntaEnSeccion(seccionIndex)" expand="full">Agregar Pregunta</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-card-content>
+    </ion-card>
+  </form>
+  <ion-button (click)="enviarJSON()" expand="full">Generar Encuesta</ion-button>
+</ion-content>
+
+<ion-footer>
+  <!-- Contenido del pie de página -->
+  <ion-toolbar class="ion-text-center">
+    <ion-title></ion-title>
+    <!-- Aquí agregamos el logo -->
+    <img src="../../assets/ia7criculo.png" alt="Logo IA7" style="max-width: 50px; height: auto;">
+  </ion-toolbar>
+</ion-footer>

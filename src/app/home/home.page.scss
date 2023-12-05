@@ -25,3 +25,57 @@
 #container a {
   text-decoration: none;
 }
+
+ion-footer {
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+}
+
+.titulo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: underline;
+  color: #7c7979; /* Cambia el color a tu preferencia */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#note,
+#tittle {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#note {
+  background-image: -webkit-linear-gradient(top, #9E9E9E 50%, #607D8B 100%);
+  color: yellow;
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+#tittle {
+  background-image: -webkit-linear-gradient(top, #C644FC 30%, #5856D6 100%);
+  color: #FA1E64;
+  font-size: 30px;
+  font-weight: 100;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* home.page.scss */
+.encuesta-details {
+  font-style: italic;
+  color: darkslategray;
+}
+
+.encuesta-details strong {
+  color: black;
+}
+
+
+
+
+
+

@@ -1,7 +1,10 @@
 {
   "name": "ia7survey",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular"
 }

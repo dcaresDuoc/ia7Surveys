@@ -1,0 +1,56 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/homeadmin"></ion-back-button>
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-buttons>
+    
+    <ion-title class="ion-text-center">Crear Empresa</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card class="card card-radio-btn">
+      <ion-card-header class="section-three">
+          <h1>Crear Empresa</h1>
+      </ion-card-header>
+      <ion-card-content>
+
+          <form [formGroup]="userForm">
+
+            <ion-item>
+              <ion-input formControlName="rut" placeholder="Ingrese RUT"></ion-input>
+              <ion-text color="danger" *ngIf="userForm.controls['rut'].hasError('rutInvalido') && userForm.controls['rut'].touched">
+                RUT inválido
+              </ion-text>
+            </ion-item>
+            
+            
+
+              <ion-item>
+                  <ion-input formControlName="descripcion" placeholder="Ingrese Empresa"></ion-input>
+                  
+              </ion-item>
+
+              <br>
+              <ion-button (click)="submitForm()" color="success" fill="outline" expand="block">CREAR</ion-button>
+          </form>
+      </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <!-- Contenido del pie de página -->
+  <ion-toolbar class="ion-text-center">
+    <ion-title></ion-title>
+    <!-- Aquí agregamos el logo -->
+    <img src="../../assets/ia7criculo.png" alt="Logo IA7" style="max-width: 50px; height: auto;">
+  </ion-toolbar>
+</ion-footer>

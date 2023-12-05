@@ -1,0 +1,34 @@
+<ion-content>
+  <div class="login-section ion-padding">
+    <div class="heading ion-padding">
+      <h1>Bienvenido</h1>
+      <!-- Aquí agregamos el logo -->
+      <img src="../../assets/ia7criculo.png" alt="Logo de IA7" class="logo-ia7">
+      <p>Sign in to continue</p>
+    </div>
+    <div class="login-form ion-padding">
+      <form [formGroup]="usuario" (ngSubmit)="login()">
+        <div class="form-input">
+          <ion-icon name="mail-outline"> </ion-icon>
+          <ion-item>
+            <ion-label position="floating">EMAIL</ion-label>
+            <ion-input type="email" formControlName="user"></ion-input>
+          </ion-item>
+        </div>
+        <div class="form-input">
+          <ion-icon name="lock-closed-outline"> </ion-icon>
+          <ion-item>
+            <ion-label position="floating">PASSWORD</ion-label>
+            <ion-input type="password" formControlName="pass"></ion-input>
+          </ion-item>
+        </div>
+        <div class="action-button ion-padding">
+          <ion-button class="login-button" size="large" type="submit">Log in</ion-button>
+          <!-- <p>Forgot password ?</p>
+          <ion-button class="signup-button" size="large" fill="outline" routerLink="/home">Sing up</ion-button> -->
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</ion-content>

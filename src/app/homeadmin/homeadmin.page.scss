@@ -1,0 +1,158 @@
+$aqur-color: #C7F8F9;
+$aqur-bg: #6AB1C9;
+$grass-color: #D0F9C7;
+$grass-bg: #78C98D;
+$sand-color: #F6F7C5;
+$sand-bg: #E5D272;
+$fire-color: #EDA39A;
+$fire-bg: #ED6A5A;
+$fire-active: #ED412A;
+$cloud-color: #C4C0C0;
+$cloud-bg: #ffffff;
+$witch-color: #D3B7F7;
+$witch-bg: #AC7EE5;
+$witch-active: #8460AF;
+
+.btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* para centrar los elementos horizontalmente */
+    justify-content: center; /* para centrar los elementos verticalmente */
+}
+
+ion-content {
+    --background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-bg {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-1 {
+    background-color: $aqur-bg;
+}
+.bg-2 {
+    background-color: $grass-bg;
+}
+.bg-3 {
+    background-color: $sand-bg;
+}
+.bg-4 {
+    background-color: $fire-bg;
+}
+.bg-5 {
+    background-color: $cloud-bg;
+}
+.bg-6 {
+    background-color: $witch-bg;
+}
+
+.btn-1, .btn-2, .btn-3, .btn-4, .btn-5, .btn-6 {
+    margin: 0 auto 30px auto;
+    display: block;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: white;
+}
+
+ion-button {
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    --color: #fff;
+    position: relative;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    --padding-top: 1rem;
+    --padding-bottom: 1rem;
+    --padding-start: 3rem;
+    --padding-end: 3rem;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5em;
+}
+
+.btn-1 {
+    --border-style: solid;
+    --border-width: 3px;
+    --border-color: $aqur-color;
+    --border-radius: 5px;
+    --background: transparent;
+    transition: all .5s ease;
+    &:hover {
+        background: $aqur-color;
+        --color: $aqur-bg;
+        --border-color: $aqur-bg;
+        transition: all .35s ease;
+    }
+    &:active {
+        transform: translate(5px, 5px);
+    }
+}
+
+.btn-2 {
+    --background: $grass-color;
+    --color: $grass-bg;
+    transition: all .7s ease;
+    &:hover {
+        background: transparent;
+        --color: $grass-color;
+    }
+}
+
+.btn-3 {
+    --background: $sand-color;
+    --color: $sand-bg;
+    transition: all 1s ease;
+    &:hover {
+        background: transparent;
+        --color: $sand-color;
+    }
+}
+
+.btn-4 {
+    --background: radial-gradient(circle, $fire-active 0.25em, transparent 0.25em) center/1.2em 1.2em;
+    --border-color: $fire-active;
+    --border-width: 3px;
+    transition: all .3s ease;
+    &:hover {
+        --color: white;
+        --background: radial-gradient(circle, $fire-active 0.25em, transparent 0.25em) center/0.1em 0.1em;
+    }
+}
+
+.btn-5 {
+    --background: transparent;
+    --color: $cloud-color;
+    --border-color: $cloud-color;
+    --border-width: 3px;
+    --border-radius: 5px;
+    transition: all .25s ease;
+    &:hover {
+        border-color: #50514f;
+        color: #50514f;
+    }
+}
+
+.btn-6 {
+    --border-color: $witch-color;
+    --border-width: 3px;
+    --border-radius: 5px;
+    transition: border 0.5s ease-out;
+    transition-delay: .8s;
+    &:hover {
+        --color: white;
+        --border-color: $witch-active;
+    }
+}
